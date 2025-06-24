@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../store/store";
 import { Box, Button, Grid, LinearProgress, Paper, Typography } from "@mui/material";
 import { CheckCircle, Delete } from "@mui/icons-material";
-import { toggleHabit, type Habit } from "../store/habit-slice";
+import { removeHabit, toggleHabit, type Habit } from "../store/habit-slice";
 
 const HabitList: React.FC = () => {
   const { habits } = useSelector((state: RootState) => state.habits);
@@ -47,7 +47,12 @@ const HabitList: React.FC = () => {
                   >
                     {habit.completedDates.includes(today) ? "Completed" : "Mark Complete"}
                   </Button>
-                  <Button variant="outlined" color="error" startIcon={<Delete />}>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    startIcon={<Delete />}
+                    onClick={() => dispatch(removeHabit(habit.id))}
+                  >
                     Delete
                   </Button>
                 </Box>
