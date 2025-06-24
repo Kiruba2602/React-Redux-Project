@@ -24,10 +24,12 @@ const HabitStats: React.FC = () => {
       const dateString = currentDate.toISOString().split("T")[0];
       if (habit.completedDates.includes(dateString)) {
         streak++;
-        currentDate.setDate(currentDate.getDate() - 1);
+        currentDate.setDate(currentDate.getDate() - 1); // move to previous day
+      } else {
+        break; // streak ended
       }
-      return streak;
     }
+    return streak;
   };
 
   const getLongestStreak = () => {
